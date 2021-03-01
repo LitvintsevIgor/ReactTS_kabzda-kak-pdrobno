@@ -1,29 +1,28 @@
-import React, {useState} from "react";
+import React from "react";
 
 export type OnOffPropsType = {
-    // onOffValue: boolean
+    onOffValue: boolean
+    setOnOffValue: (onOffValue: boolean) => void
 }
 
 export function OnOff(props: OnOffPropsType) {
 
-    console.log("OnOff rendering");
+    // console.log("OnOff rendering");
 
-    let [on, setOn] = useState(false); // hook with init value
-
-    console.log("on: " + on)
+    // console.log("on: " + on)
 
     const onBtn = {
         border: "1px solid black",
         padding: "10px 40px",
         display: "inline-block",
-        backgroundColor: on ? "green" : "white"
+        backgroundColor: props.onOffValue ? "green" : "white"
     }
     const offBtn = {
         border: "1px solid black",
         padding: "10px 40px",
         display: "inline-block",
         marginLeft: "10px",
-        backgroundColor: !on ? "red" : "white"
+        backgroundColor: !props.onOffValue ? "red" : "white"
     }
     const indicator = {
         width: "15px",
@@ -32,13 +31,13 @@ export function OnOff(props: OnOffPropsType) {
         borderRadius: "50%",
         display: "inline-block",
         marginLeft: "10px",
-        backgroundColor: on ? "green" : "red"
+        backgroundColor: props.onOffValue ? "green" : "red"
     }
 
     return (
         <div>
-            <div style={onBtn} onClick={ () => {setOn(true)} } >On</div>
-            <div style={offBtn} onClick={ () => {setOn(false)} }>Off</div>
+            <div style={onBtn} onClick={ () => {props.setOnOffValue(true)} } >On</div>
+            <div style={offBtn} onClick={ () => {props.setOnOffValue(false)} }>Off</div>
             <div style={indicator}></div>
         </div>
     )
